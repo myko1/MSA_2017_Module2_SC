@@ -6,21 +6,17 @@
              Title="Main">
 
     <ContentPage.Content>
-        <StackLayout Padding="5,10">
-            <Label TextColor="#77d065" FontSize = "40" Text="Spell Checker" />
-            <Editor x:Name="text1" Text="Enter here"   HeightRequest="160" />
-            <StackLayout Orientation="Horizontal" HeightRequest="50" Padding="5">
-                <StackLayout Spacing="0"  Orientation="Horizontal" HorizontalOptions="Start">
-                    <Button Text="Recent" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+        <ScrollView>
+            <StackLayout Padding="5,10">
+                <Label TextColor="#77d065" FontSize = "40" Text="Spell Checker" HorizontalOptions="Center"/>
+                <StackLayout BackgroundColor="Black" Padding="1">
+                    <Editor x:Name="text1" Text="Our engineers developde this four you! He will be their in 5 minutes. A new service from micros oft! Our service is like lyft for word processing!" HeightRequest="100" BackgroundColor="White"/>
                 </StackLayout>
-                <StackLayout Spacing="0"  Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                    <Button x:Name ="CheckButton" Text="Check" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Clicked="OnClick" />
-                </StackLayout>
+                <Button x:Name ="CheckButton" Text="Check" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Clicked="OnClick" />
+                <Label TextColor="#77d065" FontSize = "30" Text="RESULTS" HorizontalOptions="Center"/>
+                <Label x:Name="Result" FontSize = "16" HorizontalOptions="Center"/>
             </StackLayout>
-            <Label x:Name="WrongWord" TextColor="#77d065" FontSize = "12" HorizontalOptions="Start"/>
-            <Label x:Name="SuggestedWord" TextColor="#77d065" FontSize = "12" HorizontalOptions="Start"/>
-            <Button x:Name ="NextWordButton" Text="Next Suggestion" HorizontalOptions="CenterAndExpand" Clicked="NextWord_Clicked" />
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 
 </ContentPage>

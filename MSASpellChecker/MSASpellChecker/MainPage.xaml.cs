@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,23 +14,28 @@ namespace MSASpellChecker
     public partial class MainPage : ContentPage
     {
 
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        async void OnClick(object sender, System.EventArgs e)
+        private async void OnClick(object sender, System.EventArgs e)
         {
-            await spellcheck();
+            SpellModel data = await spellCheck();
+            display(data);
         }
 
-        async void NextWord_Clicked(object sender, System.EventArgs e)
+        public void display(SpellModel data)
         {
-            
+            string apiResult = "";
+            foreach (var item in data.flaggedTokens)
+            {
+                apiResult += "Wrong word: " + item.token + "\n" + "Suggested word: " + item.suggestions[0].suggestion + "\n\n";
+            }
+            Result.Text = apiResult;
         }
 
-        async Task spellcheck()
+        async Task<SpellModel> spellCheck()
         {
             List<SpellModel> spellModel = new List<SpellModel>();
             var client = new HttpClient();
@@ -45,23 +51,14 @@ namespace MSASpellChecker
             if (result.IsSuccessStatusCode)
             {
                 var json = await result.Content.ReadAsStringAsync();
-                //dynamic data = JObject.Parse(json);
                 var data = JsonConvert.DeserializeObject<SpellModel>(json);
-                foreach (var item in data.flaggedTokens)
-                {
-
-                    WrongWord.Text = "Wrong Word : " + item.token;
-                    SuggestedWord.Text = "Spelling Suggestion : " + item.suggestions[0].suggestion;
-
-                }
+                return data;
             }
             else
             {
-                WrongWord.Text = "!@#$%^&*()";
-                SuggestedWord.Text = "!@#$%^&*()";
+                Result.Text = "!@#$%^&*()";
+                return null;
             }
         }
-
-
     }
 }
