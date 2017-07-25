@@ -12,12 +12,12 @@ namespace MSASpellChecker
 
         private static AzureManager instance;
         private MobileServiceClient client;
-        private IMobileServiceTable<EasyTableModel> easyTable;
+        private IMobileServiceTable<kahawaiModel> easyTable;
 
         private AzureManager()
         {
             this.client = new MobileServiceClient("http://mySpellChecker.azurewebsites.net");
-            this.easyTable = this.client.GetTable<EasyTableModel>();
+            this.easyTable = this.client.GetTable<kahawaiModel>();
         }
 
         public MobileServiceClient AzureClient
@@ -37,18 +37,18 @@ namespace MSASpellChecker
                 return instance;
             }
         }
-
-        public async Task AddToHistory(EasyTableModel easyTableModel)
+    
+        public async Task AddToHistory(kahawaiModel easyTableModel)
         {
             await this.easyTable.InsertAsync(easyTableModel);
         }
 
-        public async Task DeleteHistory(EasyTableModel easyTableModel)
+        public async Task ClearHistory(kahawaiModel easyTableModel)
         {
             await this.easyTable.DeleteAsync(easyTableModel);
         }
 
-        public async Task<List<EasyTableModel>> GetHistory()
+        public async Task<List<kahawaiModel>> GetHistory()
         {
             return await this.easyTable.ToListAsync();
         }

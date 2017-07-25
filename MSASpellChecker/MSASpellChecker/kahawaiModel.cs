@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MSASpellChecker
 {
-    class EasyTableModel
+    public class kahawaiModel
     {
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }

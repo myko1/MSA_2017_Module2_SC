@@ -16,5 +16,26 @@ namespace MSASpellChecker
         {
             InitializeComponent();
         }
+
+        async void SeeHistory(object sender, System.EventArgs e)
+        {
+            List<kahawaiModel> history = await AzureManager.AzureManagerInstance.GetHistory();
+
+            SentenceList.ItemsSource = history;
+        }
+
+        async void ClearHistory(object sender, System.EventArgs e)
+        {
+            List<kahawaiModel> history = await AzureManager.AzureManagerInstance.GetHistory();
+
+            foreach (kahawaiModel element in history)
+            {
+                await AzureManager.AzureManagerInstance.ClearHistory(element);
+            }
+
+            List<kahawaiModel> cleared = await AzureManager.AzureManagerInstance.GetHistory();
+
+            SentenceList.ItemsSource = cleared;
+        }
     }
 }

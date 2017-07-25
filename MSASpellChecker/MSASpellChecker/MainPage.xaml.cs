@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace MSASpellChecker
 {
@@ -52,6 +53,14 @@ namespace MSASpellChecker
             {
                 var json = await result.Content.ReadAsStringAsync();
                 var data = JsonConvert.DeserializeObject<SpellModel>(json);
+
+                kahawaiModel sentences = new kahawaiModel()
+                {
+                    sentence = text1.Text
+                };
+
+                await AzureManager.AzureManagerInstance.AddToHistory(sentences);
+
                 return data;
             }
             else

@@ -7,20 +7,22 @@
         <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
     </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout>
-            <Button Text="See Photo Information" TextColor="White" BackgroundColor="Red" Clicked="Handle_ClickedAsync" />
-            <ListView x:Name="HotDogList" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Longitude, StringFormat='Longitude: {0:N}'}" HorizontalOptions="FillAndExpand" Margin="20,0,0,0" VerticalTextAlignment="Center" />
-                                <Label Text="{Binding Latitude, StringFormat='Latitude: {0:N}'}" VerticalTextAlignment="Center" Margin="0,0,20,0" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Button Text="See History" TextColor="White" BackgroundColor="Gray" Clicked="SeeHistory" />
+                <Button Text="Clear History" TextColor="White" BackgroundColor="Gray"  Clicked="ClearHistory" />
+                <ListView x:Name="SentenceList" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding sentence, StringFormat='Sentence: {0:N}'}" HorizontalOptions="FillAndExpand" Margin="20,0,0,0" VerticalTextAlignment="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
