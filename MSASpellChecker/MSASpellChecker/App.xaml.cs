@@ -13,7 +13,14 @@ namespace MSASpellChecker
         {
             InitializeComponent();
 
-            MainPage = new MSASpellChecker.MainPage();
+            MainPage = new TabbedPage
+            {
+                Children =
+                {
+                    new MainPage(),
+                    new HistoryPage()
+                }
+            };
         }
 
         protected override void OnStart()

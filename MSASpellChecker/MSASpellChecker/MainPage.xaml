@@ -2,10 +2,25 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MSASpellChecker"
-             x:Class="MSASpellChecker.MainPage">
+             x:Class="MSASpellChecker.MainPage"
+             Title="Main">
 
-	<Label Text="Welcome to Xamarin Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <ContentPage.Content>
+        <StackLayout Padding="5,10">
+            <Label TextColor="#77d065" FontSize = "40" Text="Spell Checker" />
+            <Editor x:Name="text1" Text="Enter here"   HeightRequest="160" />
+            <StackLayout Orientation="Horizontal" HeightRequest="50" Padding="5">
+                <StackLayout Spacing="0"  Orientation="Horizontal" HorizontalOptions="Start">
+                    <Button Text="Recent" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+                <StackLayout Spacing="0"  Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Button x:Name ="CheckButton" Text="Check" VerticalOptions="Start" HorizontalOptions="FillAndExpand" Clicked="OnClick" />
+                </StackLayout>
+            </StackLayout>
+            <Label x:Name="WrongWord" TextColor="#77d065" FontSize = "12" HorizontalOptions="Start"/>
+            <Label x:Name="SuggestedWord" TextColor="#77d065" FontSize = "12" HorizontalOptions="Start"/>
+            <Button x:Name ="NextWordButton" Text="Next Suggestion" HorizontalOptions="CenterAndExpand" Clicked="NextWord_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>
